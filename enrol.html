@@ -29,9 +29,9 @@
 <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="<?php echo $publishablekey; ?>"
-    data-image=""
-    data-name="Moodle Course Enrolment"
-    data-description="Enrolment Cost (<?php p($instance->currency) ?><?php p($cost) ?>)"
+    data-image="<?php p($PAGE->theme->setting_file_url('logo', 'logo')) ?>"
+    data-name="<?php p($coursefullname) ?> - <?php p($instancename) ?>"
+    data-description="Enrollment Cost (<?php p($instance->currency) ?><?php p($cost) ?>)"
     data-metadata="6"
     data-currency="<?php p($instance->currency) ?>"
     data-amount="<?php p($cost * 100) ?>">
