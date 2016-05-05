@@ -106,9 +106,8 @@ try {
 
     require_once('Stripe/lib/Stripe.php');
 	
-	// set statement descriptor
-	$desc = substr($data->item_name,1,22);
-	//$desc = $plugininstance->statement_desc;
+	// set statement descriptor to instance setting
+	$desc = $plugininstance->customchar1;
 
     Stripe::setApiKey($plugin->get_config('secretkey'));
     $charge = Stripe_Charge::create(array(

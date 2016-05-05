@@ -56,6 +56,7 @@ $string['stripeaccepted'] = 'Stripe payments accepted';
 $string['pluginname'] = 'Stripe Payment';
 $string['pluginname_desc'] = 'The Stripe module allows you to set up paid courses.  If the cost for any course is zero, then students are not asked to pay for entry.  There is a site-wide cost that you set here as a default for the whole site and then a course setting that you can set for each course individually. The course cost overrides the site cost.';
 $string['sendpaymentbutton'] = 'Send payment via Stripe';
+$string['statement_desc'] = 'Statement description';
 $string['status'] = 'Allow Stripe enrolments';
 $string['status_desc'] = 'Allow users to use Stripe to enrol into a course by default.';
 $string['unenrolselfconfirm'] = 'Do you really want to unenrol yourself from course "{$a}"?';

@@ -56,6 +56,9 @@ class enrol_stripepayment_edit_form extends moodleform {
         $mform->addElement('text', 'cost', get_string('cost', 'enrol_stripepayment'), array('size' => 4));
         $mform->setType('cost', PARAM_RAW); // Use unformat_float to get real value.
         $mform->setDefault('cost', format_float($plugin->get_config('cost'), 2, true));
+		
+		$mform->addElement('text', 'customchar1', get_string('statement_desc', 'enrol_stripepayment'));
+        $mform->setType('customchar1', PARAM_TEXT);
 
         $stripecurrencies = $plugin->get_currencies();
         $mform->addElement('select', 'currency', get_string('currency', 'enrol_stripepayment'), $stripecurrencies);
