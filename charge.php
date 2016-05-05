@@ -102,18 +102,23 @@ if ( (float) $plugininstance->cost <= 0 ) {
 // Use the same rounding of floats as on the enrol form.
 $cost = format_float($cost, 2, false);
 
-// Let's say each article costs 15.00 bucks.
-
 try {
 
     require_once('Stripe/lib/Stripe.php');
+	
+	// set statement descriptor
+	$desc = substr($data->item_name,1,22);
+	//$desc = $plugininstance->statement_desc;
 
     Stripe::setApiKey($plugin->get_config('secretkey'));
     $charge = Stripe_Charge::create(array(
       "amount" => $cost * 100,
       "currency" => $plugininstance->currency,
       "card" => $_POST['stripeToken'],
-      "description" => "Charge for Course Enrolment Cost."
+      "description" => $data->item_name,
+	  "receipt_email" => $data->email,
+	  "statement_descriptor" => $desc,
+	  "metadata" => array("user_full_name" => $data->os0,"user_email" => $data->email)
     ));
     // Send the file, this line will be reached if no error was thrown above.
     $data->txn_id = $charge->balance_transaction;

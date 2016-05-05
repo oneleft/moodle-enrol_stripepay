@@ -26,10 +26,12 @@
 <input type="hidden" name="city" value="<?php p($usercity) ?>" />
 <input type="hidden" name="email" value="<?php p($USER->email) ?>" />
 <input type="hidden" name="country" value="<?php p($USER->country) ?>" />
+<input type="hidden" name="site_short" value="<?php echo "{$SITE->shortname}" ?>" />
+
 <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="<?php echo $publishablekey; ?>"
-    data-image="<?php p($PAGE->theme->setting_file_url('logo', 'logo')) ?>"
+    data-image="<?php echo $PAGE->theme->settings->logo; ?>"
     data-name="<?php p($coursefullname) ?> - <?php p($instancename) ?>"
     data-description="Enrollment Cost (<?php p($instance->currency) ?><?php p($cost) ?>)"
     data-metadata="6"
