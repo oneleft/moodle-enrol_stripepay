@@ -5,7 +5,7 @@ Moodle Stripe Enrollment Plugin
 * License: [GNU GENERAL PUBLIC LICENSE](LICENSE)
 * Contributors:  2015 Dualcube, Arkaprava Midya, Parthajeet Chakraborty
 
-_Credit goes to Dualcube for the initial work on which this is based_
+_*Credit goes to Dualcube for the initial work on which this is based_
 
 Description
 ===========
