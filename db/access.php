@@ -17,8 +17,8 @@
 /**
  * Capabilities for stripe enrolment plugin.
  *
- * @package    enrol_stripepayment
- * @copyright  2015 Dualcube, Arkaprava Midya, Parthajeet Chakraborty
+ * @package    enrol_stripepay
+ * @copyright  2016 zPivot, Zach Washburn
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
 
-    'enrol/stripepayment:config' => array(
+    'enrol/stripepay:config' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
         'archetypes' => array(
@@ -34,7 +34,7 @@ $capabilities = array(
         )
     ),
 
-    'enrol/stripepayment:manage' => array(
+    'enrol/stripepay:manage' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
         'archetypes' => array(
@@ -43,7 +43,7 @@ $capabilities = array(
         )
     ),
 
-    'enrol/stripepayment:unenrol' => array(
+    'enrol/stripepay:unenrol' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
         'archetypes' => array(
@@ -51,7 +51,7 @@ $capabilities = array(
         )
     ),
 
-    'enrol/stripepayment:unenrolself' => array(
+    'enrol/stripepay:unenrolself' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
         'archetypes' => array(

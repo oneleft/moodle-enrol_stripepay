@@ -17,13 +17,13 @@
 /**
  * Defines message providers (types of message sent) for the Stripe enrolment plugin.
  *
- * @package    enrol_stripepayment
- * @copyright  2015 Dualcube, Arkaprava Midya, Parthajeet Chakraborty
+ * @package    enrol_stripepay
+ * @copyright  2016 zPivot, Zach Washburn
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $messageproviders = array(
-    'stripepayment_enrolment' => array(),
+    'stripepay_enrolment' => array(),
 );
