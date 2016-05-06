@@ -1,4 +1,4 @@
-Moodle Stripe Enrollment Plugin
+Moodle Stripe Enrollment Plugin [enrol_stripepay]
 =======================
 * Maintained by: Zach Washburn
 * Copyright: (c) 2016 zPivot, Zach Washburn

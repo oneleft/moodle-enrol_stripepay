@@ -19,8 +19,8 @@
  *
  * This plugin allows you to set up paid courses.
  *
- * @package    enrol_stripepayment
- * @copyright  2015 Dualcube, Arkaprava Midya, Parthajeet Chakraborty
+ * @package    enrol_stripepay
+ * @copyright  2016 zPivot, Zach Washburn
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -28,10 +28,10 @@ defined('MOODLE_INTERNAL') || die();
 
 /**
  * Stripe enrolment plugin implementation.
- * @copyright  2015 Dualcube, Arkaprava Midya, Parthajeet Chakraborty
+ * @copyright  2016 zPivot, Zach Washburn
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class enrol_stripepayment_plugin extends enrol_plugin {
+class enrol_stripepay_plugin extends enrol_plugin {
     /**
      * Lists all currencies available for plugin.
      * @return $currencies
@@ -76,7 +76,7 @@ class enrol_stripepayment_plugin extends enrol_plugin {
             break;
         }
         if ($found) {
-            return array(new pix_icon('icon', get_string('pluginname', 'enrol_stripepayment'), 'enrol_stripepayment'));
+            return array(new pix_icon('icon', get_string('pluginname', 'enrol_stripepay'), 'enrol_stripepay'));
         }
         return array();
     }
@@ -123,13 +123,13 @@ class enrol_stripepayment_plugin extends enrol_plugin {
      * @return void
      */
     public function add_course_navigation($instancesnode, stdClass $instance) {
-        if ($instance->enrol !== 'stripepayment') {
+        if ($instance->enrol !== 'stripepay') {
              throw new coding_exception('Invalid enrol instance type!');
         }
 
         $context = context_course::instance($instance->courseid);
-        if (has_capability('enrol/stripepayment:config', $context)) {
-            $managelink = new moodle_url('/enrol/stripepayment/edit.php', array('courseid' => $instance->courseid, 'id' => $instance->id));
+        if (has_capability('enrol/stripepay:config', $context)) {
+            $managelink = new moodle_url('/enrol/stripepay/edit.php', array('courseid' => $instance->courseid, 'id' => $instance->id));
             $instancesnode->add($this->get_instance_name($instance), $managelink, navigation_node::TYPE_SETTING);
         }
     }
@@ -142,15 +142,15 @@ class enrol_stripepayment_plugin extends enrol_plugin {
     public function get_action_icons(stdClass $instance) {
         global $OUTPUT;
 
-        if ($instance->enrol !== 'stripepayment') {
+        if ($instance->enrol !== 'stripepay') {
             throw new coding_exception('invalid enrol instance!');
         }
         $context = context_course::instance($instance->courseid);
 
         $icons = array();
 
-        if (has_capability('enrol/stripepayment:config', $context)) {
-            $editlink = new moodle_url("/enrol/stripepayment/edit.php", array('courseid' => $instance->courseid, 'id' => $instance->id));
+        if (has_capability('enrol/stripepay:config', $context)) {
+            $editlink = new moodle_url("/enrol/stripepay/edit.php", array('courseid' => $instance->courseid, 'id' => $instance->id));
             $icons[] = $OUTPUT->action_icon($editlink, new pix_icon('t/edit', get_string('edit'), 'core',
                     array('class' => 'iconsmall')));
         }
@@ -166,12 +166,12 @@ class enrol_stripepayment_plugin extends enrol_plugin {
     public function get_newinstance_link($courseid) {
         $context = context_course::instance($courseid, MUST_EXIST);
 
-        if (!has_capability('moodle/course:enrolconfig', $context) or !has_capability('enrol/stripepayment:config', $context)) {
+        if (!has_capability('moodle/course:enrolconfig', $context) or !has_capability('enrol/stripepay:config', $context)) {
             return null;
         }
 
         // Multiple instances supported - different cost for different roles.
-        return new moodle_url('/enrol/stripepayment/edit.php', array('courseid' => $courseid));
+        return new moodle_url('/enrol/stripepay/edit.php', array('courseid' => $courseid));
     }
 
     /**
@@ -221,7 +221,7 @@ class enrol_stripepayment_plugin extends enrol_plugin {
         }
 
         if (abs($cost) < 0.01) { // No cost, other enrolment methods (instances) should be used.
-            echo '<p>'.get_string('nocost', 'enrol_stripepayment').'</p>';
+            echo '<p>'.get_string('nocost', 'enrol_stripepay').'</p>';
         } else {
 
             // Calculate localised and "." cost, make sure we send Stripe the same value,
@@ -252,7 +252,7 @@ class enrol_stripepayment_plugin extends enrol_plugin {
                 $usercity        = $USER->city;
                 $instancename    = $this->get_instance_name($instance);
 
-                include($CFG->dirroot.'/enrol/stripepayment/enrol.html');
+                include($CFG->dirroot.'/enrol/stripepay/enrol.html');
             }
 
         }
@@ -316,12 +316,12 @@ class enrol_stripepayment_plugin extends enrol_plugin {
         $instance = $ue->enrolmentinstance;
         $params = $manager->get_moodlepage()->url->params();
         $params['ue'] = $ue->id;
-        if ($this->allow_unenrol($instance) && has_capability("enrol/stripepayment:unenrol", $context)) {
+        if ($this->allow_unenrol($instance) && has_capability("enrol/stripepay:unenrol", $context)) {
             $url = new moodle_url('/enrol/unenroluser.php', $params);
             $actions[] = new user_enrolment_action(new pix_icon('t/delete', ''),
             get_string('unenrol', 'enrol'), $url, array('class' => 'unenrollink', 'rel' => $ue->id));
         }
-        if ($this->allow_manage($instance) && has_capability("enrol/stripepayment:manage", $context)) {
+        if ($this->allow_manage($instance) && has_capability("enrol/stripepay:manage", $context)) {
             $url = new moodle_url('/enrol/editenrolment.php', $params);
             $actions[] = new user_enrolment_action(new pix_icon('t/edit', ''),
             get_string('edit'), $url, array('class' => 'editenrollink', 'rel' => $ue->id));
@@ -355,7 +355,7 @@ class enrol_stripepayment_plugin extends enrol_plugin {
      */
     public function can_delete_instance($instance) {
         $context = context_course::instance($instance->courseid);
-        return has_capability('enrol/stripepayment:config', $context);
+        return has_capability('enrol/stripepay:config', $context);
     }
 
     /**
@@ -366,6 +366,6 @@ class enrol_stripepayment_plugin extends enrol_plugin {
      */
     public function can_hide_show_instance($instance) {
         $context = context_course::instance($instance->courseid);
-        return has_capability('enrol/stripepayment:config', $context);
+        return has_capability('enrol/stripepay:config', $context);
     }
 }

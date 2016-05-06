@@ -17,11 +17,11 @@
 /**
  * Course wise edit settings.
  * 
- * Adds new instance of enrol_stripepayment to specified course
+ * Adds new instance of enrol_stripepay to specified course
  * or edits current instance.
  *
- * @package    enrol_stripepayment
- * @copyright  2015 Dualcube, Arkaprava Midya, Parthajeet Chakraborty
+ * @package    enrol_stripepay
+ * @copyright  2016 zPivot, Zach Washburn
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -35,21 +35,21 @@ $course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
 $context = context_course::instance($course->id, MUST_EXIST);
 
 require_login($course);
-require_capability('enrol/stripepayment:config', $context);
+require_capability('enrol/stripepay:config', $context);
 
-$PAGE->set_url('/enrol/stripepayment/edit.php', array('courseid' => $course->id, 'id' => $instanceid));
+$PAGE->set_url('/enrol/stripepay/edit.php', array('courseid' => $course->id, 'id' => $instanceid));
 $PAGE->set_pagelayout('admin');
 
 $return = new moodle_url('/enrol/instances.php', array('id' => $course->id));
-if (!enrol_is_enabled('stripepayment')) {
+if (!enrol_is_enabled('stripepay')) {
     redirect($return);
 }
 
-$plugin = enrol_get_plugin('stripepayment');
+$plugin = enrol_get_plugin('stripepay');
 
 if ($instanceid) {
     $instance = $DB->get_record('enrol',
-    array('courseid' => $course->id, 'enrol' => 'stripepayment', 'id' => $instanceid), '*', MUST_EXIST);
+    array('courseid' => $course->id, 'enrol' => 'stripepay', 'id' => $instanceid), '*', MUST_EXIST);
     $instance->cost = format_float($instance->cost, 2, true);
 } else {
     require_capability('moodle/course:enrolconfig', $context);
@@ -60,7 +60,7 @@ if ($instanceid) {
     $instance->courseid = $course->id;
 }
 
-$mform = new enrol_stripepayment_edit_form(null, array($instance, $plugin, $context));
+$mform = new enrol_stripepay_edit_form(null, array($instance, $plugin, $context));
 
 if ($mform->is_cancelled()) {
     redirect($return);
@@ -96,9 +96,9 @@ if ($mform->is_cancelled()) {
 }
 
 $PAGE->set_heading($course->fullname);
-$PAGE->set_title(get_string('pluginname', 'enrol_stripepayment'));
+$PAGE->set_title(get_string('pluginname', 'enrol_stripepay'));
 
 echo $OUTPUT->header();
-echo $OUTPUT->heading(get_string('pluginname', 'enrol_stripepayment'));
+echo $OUTPUT->heading(get_string('pluginname', 'enrol_stripepay'));
 $mform->display();
 echo $OUTPUT->footer();
