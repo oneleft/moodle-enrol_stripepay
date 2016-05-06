@@ -1,10 +1,11 @@
 Moodle Stripe Enrollment Plugin
 =======================
 * Maintained by: Zach Washburn
-* Copyright: Copyright zPivot
+* Copyright: (c) 2016 zPivot, Zach Washburn
 * License: [GNU GENERAL PUBLIC LICENSE](LICENSE)
-* Credits: Dualcube for initial release on which this is based
+* Contributors:  2015 Dualcube, Arkaprava Midya, Parthajeet Chakraborty
 
+*Credit goes to Dualcube for the initial work on which this is based
 
 Description
 ===========
