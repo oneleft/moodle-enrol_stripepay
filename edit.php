@@ -86,9 +86,7 @@ if ($mform->is_cancelled()) {
         }
 
     } else {
-        $fields = array('status' => $data->status, 'name' => $data->name, 'customchar1' => $data->customchar1, 'cost' => unformat_float($data->cost),
-                        'currency' => $data->currency, 'roleid' => $data->roleid, 'enrolperiod' => $data->enrolperiod,
-                        'enrolstartdate' => $data->enrolstartdate, 'enrolenddate' => $data->enrolenddate);
+        $fields = array('status' => $data->status, 'name' => $data->name, 'customchar1' => $data->customchar1, 'cost' => 	unformat_float($data->cost),'currency' => $data->currency, 'roleid' => $data->roleid, 'enrolperiod' => $data->enrolperiod,'enrolstartdate' => $data->enrolstartdate, 'enrolenddate' => $data->enrolenddate);
         $plugin->add_instance($course, $fields);
     }
 

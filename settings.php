@@ -62,6 +62,9 @@ if ($ADMIN->fulltree) {
                      ENROL_INSTANCE_DISABLED => get_string('no'));
     $settings->add(new admin_setting_configselect('enrol_stripepay/status',
         get_string('status', 'enrol_stripepay'), get_string('status_desc', 'enrol_stripepay'), ENROL_INSTANCE_DISABLED, $options));
+		
+	$settings->add(new admin_setting_configcheckbox('enrol_stripepay/allow_bitcoin',
+    get_string('allow_bitcoin', 'enrol_stripepay'), '', 0));
 
     $settings->add(new admin_setting_configtext('enrol_stripepay/cost', get_string('cost', 'enrol_stripepay'), '', 0, PARAM_FLOAT, 4));
 

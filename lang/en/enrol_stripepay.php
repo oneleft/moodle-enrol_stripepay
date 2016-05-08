@@ -22,6 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['allow_bitcoin'] = 'Allow bitcoin payment';
 $string['assignrole'] = 'Assign role';
 $string['secretkey'] = 'Stripe Secret Key';
 $string['publishablekey'] = 'Stripe Publishable Key';
