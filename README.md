@@ -48,6 +48,7 @@ Useful links
 ============
 * Moodle Forum: [https://moodle.org/course](https://moodle.org/course)
 * Moodle Plugins Directory:  [https://moodle.org/plugins](https://moodle.org/plugins)
+* Stripe API: [https://stripe.com/docs/api?lang=php#intro](https://stripe.com/docs/api?lang=php#intro)
 
 
 Release history
