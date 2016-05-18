@@ -49,9 +49,10 @@ if (empty($_POST) or !empty($_GET)) {
 
 $data = new stdClass();
 
-foreach ($_POST as $key => $value) {
-    $data->$key = $value;
-}
+$data->custom = required_param('custom', PARAM_ALPHANUMEXT);
+$data->amount = required_param('amount', PARAM_ALPHANUMEXT);
+$data->currency_code = required_param('currency_code', PARAM_ALPHANUMEXT);
+
 $custom = explode('-', $data->custom);
 $data->userid           = (int)$custom[0];
 $data->courseid         = (int)$custom[1];
@@ -105,7 +106,7 @@ $cost = format_float($cost, 2, false);
 try {
 
     require_once('Stripe/lib/Stripe.php');
-	
+
 	// set statement descriptor to instance setting
 	$desc = $plugininstance->customchar1;
 
@@ -113,7 +114,7 @@ try {
     $charge = Stripe_Charge::create(array(
       "amount" => $cost * 100,
       "currency" => $plugininstance->currency,
-      "card" => $_POST['stripeToken'],
+      "card" => required_param('stripeToken', PARAM_ALPHANUMEXT),
       "description" => $data->item_name,
 	  "receipt_email" => $data->email,
 	  "statement_descriptor" => $desc,
